@@ -1,9 +1,9 @@
 .width {
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 882px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 882px) {
     .width {
         max-width: calc(100% - 19px*2);
     }

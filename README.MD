@@ -7,6 +7,10 @@ Mostly there:
 * SVGs are sometimes disappearing on resize? Tried to fix things with the object-fit declaration and whatnot, but still no dice. Only happens at 315px width and below.
 * Needs more cowbell
 
+### Draft 2
+* Wasn't entirely sure what the review photo meant, but I presumed it meant improper max-width. There's a max-width value listed in the project description at 1200px, while the Figma design file specifies 882px. Changed max-width to the design file spec.
+* Fixed the duplicate logo call.
+
 
 Link to live site:
 https://ddemosi.github.io/web_project_4/
