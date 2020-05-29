@@ -1,0 +1,17 @@
+.profile__add-button-large {
+    display: none;
+    width: 100%;
+}
+
+.profile__add-button-large:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 800px) {
+    .profile__add-button-large {
+        display: block;
+        margin: 36px auto 0;
+        max-width: 282px;
+        width: 100%;
+    }
+}

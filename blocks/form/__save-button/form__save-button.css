@@ -1,0 +1,8 @@
+.form__save-button {
+    width: 100%;
+    padding-bottom: 36px;
+}
+
+.form__save-button:hover {
+    opacity: 0.8;
+}

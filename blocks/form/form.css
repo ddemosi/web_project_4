@@ -1,0 +1,17 @@
+@import url('__exit/form__exit.css');
+@import url('__save-button/form__save-button.css');
+@import url('__text-field/form__text-field.css');
+@import url('__title/form__title.css');
+
+.form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 15% auto;
+    background-color: #fff;
+    color: #000;
+    max-width: 430px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}

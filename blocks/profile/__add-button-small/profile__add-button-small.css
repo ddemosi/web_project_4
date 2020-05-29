@@ -1,0 +1,16 @@
+.profile__add-button-small {
+    margin: 0 0 0 auto;
+    max-height: 50px;
+    max-width: 150px;
+    width: 100%;
+}
+
+.profile__add-button-small:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 800px) {
+    .profile__add-button-small {
+        display: none;
+    }
+}

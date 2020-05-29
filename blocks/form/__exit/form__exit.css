@@ -1,0 +1,19 @@
+.form__exit {
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: -30px;
+    right: -30px;
+}
+
+.form__exit:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 500px) {
+    .form__exit {
+        top: -35px;
+        right: 0;
+    }
+}
