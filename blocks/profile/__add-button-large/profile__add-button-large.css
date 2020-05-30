@@ -1,6 +1,13 @@
 .profile__add-button-large {
     display: none;
     width: 100%;
+    height: 50px;
+    background-image: url('../../../images/add-button-large.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: black;
+    outline: none;
 }
 
 .profile__add-button-large:hover {

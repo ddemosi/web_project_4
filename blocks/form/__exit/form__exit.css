@@ -5,6 +5,12 @@
     height: 40px;
     top: -30px;
     right: -30px;
+    background-image: url('../../../images/Close\ Icon.svg');
+    background-size: contain;
+    z-index: -1;
+    border: none;
+    background-color: black;
+    outline: none;
 }
 
 .form__exit:hover {

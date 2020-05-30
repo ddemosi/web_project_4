@@ -9,81 +9,81 @@
 <body>
     <div class="page">
         <header class="header width">
-            <img class="logo" src="images/logo.svg">
+            <img class="logo" src="images/logo.svg" alt="Around the US Logo">
         </header>
         <main class="main">
             <section class="profile width">
                 <img class="profile__avatar" src="images/jacques-cousteau.jpg" alt="Your profile picture">
                 <div class="profile__name-container">
                     <h2 class="profile__name">Jacques Cousteau</h2>
-                    <img src="images/Edit Button.svg" class="profile__edit-button">
+                    <button class="profile__edit-button"></button>
                     <p class="profile__subtitle">Explorer</p>
                 </div>
                     
-                <img src="images/add-button-small.svg" class="profile__add-button-small">
-                <img src="images/add-button-large.svg" class="profile__add-button-large">
+                <button class="profile__add-button-small"></button>
+                <button class="profile__add-button-large"></button>
             </section>
 
             <section class="elements width">
                 <ul class="elements__grid-container">
                     <li class="element">
-                        <img class="element__image" src="images/mountain-forest.jpg">
+                        <div class="element__image" style="background-image: url('images/mountain-forest.jpg');"></div>
                         <div class="element__title-container">
-                            <p class="element__title">Yosemite Valley</p>
-                            <img src="images/heart.svg" alt="A clickable heart icon" class="element__like-button">
+                            <h2 class="element__title">Yosemite Valley</h2>
+                            <button class="element__like-button"></button>
                         </div>
                     </li>
 
                     <li class="element">
-                        <img class="element__image" src="images/moutain-glacier-lake.png">
+                        <div class="element__image" style="background-image: url('images/mountain-glacier-lake.png');"></div>
                         <div class="element__title-container">
-                            <p class="element__title">Lake Louise</p>
-                            <img src="images/heart.svg" alt="A clickable heart icon" class="element__like-button">
+                            <h2 class="element__title">Lake Louise</h2>
+                            <button class="element__like-button"></button>
                         </div>
                     </li>
 
                     <li class="element">
-                        <img class="element__image" src="images/mountain-sunset.png">
+                        <div class="element__image" style="background-image: url('images/mountain-sunset.png');"></div>
                         <div class="element__title-container">
-                            <p class="element__title">Bald Mountains</p>
-                            <img src="images/heart.svg" alt="A clickable heart icon" class="element__like-button">
+                            <h2 class="element__title">Bald Mountains</h2>
+                            <button class="element__like-button"></button>
                         </div>
                     </li>
 
                     <li class="element">
-                        <img class="element__image" src="images/mountain-night.png">
+                        <div class="element__image" style="background-image: url('images/mountain-night.png');"></div>
                         <div class="element__title-container">
-                            <p class="element__title">Latemar</p>
-                            <img src="images/heart.svg" alt="A clickable heart icon" class="element__like-button">
+                            <h2 class="element__title">Latemar</h2>
+                            <button class="element__like-button"></button>
                         </div>
                     </li>
 
                     <li class="element">
-                        <img class="element__image" src="images/mountain-lake.png">
+                        <div class="element__image" style="background-image: url('images/mountain-lake.png');"></div>
                         <div class="element__title-container">
-                            <p class="element__title">Vanois National...</p>
-                            <img src="images/heart.svg" alt="A clickable heart icon" class="element__like-button">
+                            <h2 class="element__title">Vanois National Park</h2>
+                            <button class="element__like-button"></button>
                         </div>
                     </li>
                 
                     <li class="element">
-                        <img class="element__image" src="images/mountain-boats.png">
+                        <div class="element__image" style="background-image: url('images/mountain-boats.png');"></div>
                         <div class="element__title-container">
-                            <p class="element__title">Lago di Braies</p>
-                            <img src="images/heart.svg" alt="A clickable heart icon" class="element__like-button">
+                            <h2 class="element__title">Lago di Braies</h2>
+                            <button class="element__like-button"></button>
                         </div>
                     </li>
                 </ul>
             </section>
             
-            <section class="modal">
+            <section class="modal modal_display_none">
                 
                 <div class="form">
-                    <img src="images/Close Icon.svg" class="form__exit">
+                    <button class="form__exit"></button>
                     <p class="form__title form-width">Edit profile</p>
-                    <input class="form__text-field form-width" id="profile-name" placeholder="Name" type="text">
-                    <input class="form__text-field form-width" id="profile-role" placeholder="About me" type="text">
-                    <img src="images/Submit Button.svg" class="form__save-button form-width">
+                    <input class="form__text-field form-width form__input-name" id="profile-name" placeholder="Name" type="text">
+                    <input class="form__text-field form-width form__input-about" id="profile-role" placeholder="About me" type="text">
+                    <button class="form__save-button form-width">Save</button>
                 </div>
             </section>
         </main>
