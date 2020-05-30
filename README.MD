@@ -17,7 +17,8 @@ Mostly there:
 * Switched all image buttons to html buttons. Took some work, but I think everything is functioning as it should be now.
 * Fixed the text-overflow issue. All overflowed text should default to ellipses.
 * Fixed various styling bugs.
-* Fixed width calculation syntax
+* Fixed width calculation syntax.
+* ***Updated font-family with a generic family name.
 
 
 Link to live site:
