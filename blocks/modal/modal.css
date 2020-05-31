@@ -1,7 +1,7 @@
-@import url('_display/modal_display_none.css');
 @import url('_display/modal_display_visible.css');
 
 .modal {
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;

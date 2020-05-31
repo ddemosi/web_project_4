@@ -20,6 +20,14 @@ Mostly there:
 * Fixed width calculation syntax.
 * ***Updated font-family with a generic family name.
 
+### Draft 4
+
+* Moved the add button to a single button with media queries.
+* Adjusted javascript functions to a toggle method.
+* Removed value scanner and added it as default to the markup.
+* Set exit button to type='reset'
+
+
 
 Link to live site:
 https://ddemosi.github.io/web_project_4/
