@@ -2,16 +2,21 @@
 @import url('__save-button/form__save-button.css');
 @import url('__text-field/form__text-field.css');
 @import url('__title/form__title.css');
+@import url('_visible/form_visible.css');
 
 .form {
-    position: relative;
+    position: fixed;
+    visibility: hidden;
     display: flex;
     flex-direction: column;
-    margin: 15% auto;
+    top: 15%;
+    left: 38%;
+    /* margin: 15% auto; */
     background-color: #fff;
     color: #000;
     max-width: 430px;
     width: 100%;
     height: auto;
     border-radius: 10px;
+    z-index: 1;
 }

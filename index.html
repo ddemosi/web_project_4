@@ -25,72 +25,48 @@
 
             <section class="elements width">
                 <ul class="elements__grid-container">
-                    <li class="element">
-                        <div class="element__image" style="background-image: url('images/mountain-forest.jpg');"></div>
-                        <div class="element__title-container">
-                            <h2 class="element__title">Yosemite Valley</h2>
-                            <button class="element__like-button"></button>
-                        </div>
-                    </li>
-
-                    <li class="element">
-                        <div class="element__image" style="background-image: url('images/mountain-glacier-lake.png');"></div>
-                        <div class="element__title-container">
-                            <h2 class="element__title">Lake Louise</h2>
-                            <button class="element__like-button"></button>
-                        </div>
-                    </li>
-
-                    <li class="element">
-                        <div class="element__image" style="background-image: url('images/mountain-sunset.png');"></div>
-                        <div class="element__title-container">
-                            <h2 class="element__title">Bald Mountains</h2>
-                            <button class="element__like-button"></button>
-                        </div>
-                    </li>
-
-                    <li class="element">
-                        <div class="element__image" style="background-image: url('images/mountain-night.png');"></div>
-                        <div class="element__title-container">
-                            <h2 class="element__title">Latemar</h2>
-                            <button class="element__like-button"></button>
-                        </div>
-                    </li>
-
-                    <li class="element">
-                        <div class="element__image" style="background-image: url('images/mountain-lake.png');"></div>
-                        <div class="element__title-container">
-                            <h2 class="element__title">Vanois National Park</h2>
-                            <button class="element__like-button"></button>
-                        </div>
-                    </li>
-                
-                    <li class="element">
-                        <div class="element__image" style="background-image: url('images/mountain-boats.png');"></div>
-                        <div class="element__title-container">
-                            <h2 class="element__title">Lago di Braies</h2>
-                            <button class="element__like-button"></button>
-                        </div>
-                    </li>
-                </ul>
             </section>
             
             <section class="modal">
                 
-                <div class="form">
-                    <button class="form__exit" type="reset"></button>
+                <div id="edit-profile" class="form">
+                    <button id="close-profile-modal" class="form__exit" type="reset"></button>
                     <p class="form__title form-width">Edit profile</p>
                     <input class="form__text-field form-width form__input-name" id="profile-name" placeholder="Name" type="text" value="Jacques Cousteau">
                     <input class="form__text-field form-width form__input-about" id="profile-role" placeholder="About me" type="text"
                     value="Explorer">
-                    <button class="form__save-button form-width">Save</button>
+                    <button id="profile-save-button" class="form__save-button form-width">Save</button>
                 </div>
+
+                <div id="add-card" class="form">
+                    <button id="close-card-modal" class="form__exit" type="reset"></button>
+                    <p class="form__title form-width">Edit profile</p>
+                    <input class="form__text-field form-width form__input-name" id="card-name" placeholder="Title" type="text" value="">
+                    <input class="form__text-field form-width form__input-about" id="card-link" placeholder="Image URL" type="text"
+                    value="">
+                    <button id="card-save-button"class="form__save-button form-width">Save</button>
+                </div>
+
             </section>
         </main>
+
         <footer class="footer width">
             <p class="footer__copyright">&copy; 2020 Danny Demosi</p>
         </footer>
     </div>
+
+    <template id="card">
+        <li class="element">
+            <div class="element__image">
+                <button class="element__delete"></button>
+                <button class="element__exit"></button>
+            </div>
+            <div class="element__title-container">
+                <h2 class="element__title"></h2>
+                <button class="element__like-button"></button>
+            </div>
+        </li>
+    </template>
     <script src="script.js"></script>
 </body>
 </html>

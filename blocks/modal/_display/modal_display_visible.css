@@ -1,3 +1,4 @@
 .modal_display_visible {
-    display: block !important;
+    visibility: visible !important;
+    background-color: rgba(0,0,0, 0.5);
 }

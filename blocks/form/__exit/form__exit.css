@@ -7,9 +7,9 @@
     right: -30px;
     background-image: url('../../../images/Close\ Icon.svg');
     background-size: contain;
-    z-index: -1;
+    z-index: -3;
     border: none;
-    background-color: black;
+    background-color: transparent;
     outline: none;
 }
 
