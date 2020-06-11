@@ -11,6 +11,7 @@ const profileSaveButton = modal.querySelector('.form__save-button_profile');
 const defaultName = document.querySelector('.profile__name');
 const defaultRole = document.querySelector('.profile__subtitle');
 const closeEditProfile = modal.querySelector('#close-profile-modal');
+
 // Selectors for adding cards modal
 const addCard = modal.querySelector('.form_card');
 const addButton = document.querySelector('.profile__add-button');
@@ -18,7 +19,6 @@ const closeAddCard = modal.querySelector('.form__exit_card');
 const cardSaveButton = modal.querySelector('.form__save-button_card');
 const addCardTitle = modal.querySelector('.form__input_image-title');
 const addCardLink = modal.querySelector('.form__input_image-link');
-const newCards = []
 
 // Selectors for card rendering
 const cardContainer = document.querySelector('.elements__grid-container');
@@ -58,81 +58,9 @@ const initialCards = [
 
 // Function to reset available cards
 
-function resetCards() {
-    document.querySelectorAll('.element').forEach(e => e.parentNode.removeChild(e));   
-}
-
 function changeHeartColor(e) {
     e.target.classList.toggle('element__like-button_active');
 }
-
-// Trash Can Delete Button
-function removeFromArray(name, link) {
-    let currentIndex = initialCards.findIndex((element) => {
-       return element.name === name && ('url("' + element.link + '")') === link;
-    });
-    
-    initialCards.splice(currentIndex, 1);
-}
-
-//THE BIG BOY THAT RENDERS EVERYTHING
-
-function renderCards() {
-    resetCards();
-    //Loop through array and generate cards
-    initialCards.forEach((item) => {
-    const cardElement = cardTemplate.cloneNode(true);
-    
-    cardElement.querySelector('.element__image').style.backgroundImage = `url("${item.link}")`;
-    cardElement.querySelector('.element__title').textContent = item.name;
-
-    cardContainer.append(cardElement);
-    })
-    //Add event listener to the like button
-    const likeButton = document.querySelectorAll('.element__like-button');
-    likeButton.forEach((item) => {
-    item.addEventListener('click', (e) => {
-        e.target.classList.toggle('element__like-button_active');
-        })
-    })
-    //Add event listener to the delete button
-    const deleteButton = document.querySelectorAll('.element__delete');
-    deleteButton.forEach((item) => {
-        item.addEventListener('click', (e) => {
-            let name = e.target.parentNode.childNodes[5].childNodes[1].textContent;
-            let link = e.target.parentNode.childNodes[3].style.backgroundImage;
-
-            removeFromArray(name, link);
-            renderCards();
-        });
-    });
-
-    //Picture pop-up modal
-    const cardPicture = document.querySelectorAll('.element__image');
-    const imageModal = document.querySelector('.image-modal');
-
-    cardPicture.forEach((item) => {
-        item.addEventListener('click', (e) => {
-            let activeImage = imageModal.querySelector('.image-modal__image');
-            let activeSubtitle = imageModal.querySelector('.image-modal__subtitle');
-            let image = e.currentTarget.style.backgroundImage;
-            let subtitle = e.currentTarget.parentNode.childNodes[5].childNodes[1].textContent;
-    
-            let imageURL = image.replace('url("', "").replace('")', "");
-            
-            activeImage.src = imageURL;
-            activeSubtitle.textContent = subtitle;
-
-            toggleImageModal();
-            
-            const imageExit = imageModal.querySelector('.image-modal__exit'); 
-            imageExit.addEventListener('click', toggleImageModal);
-        })
-    })
-
-}
-
-renderCards();
 
 // Functions to toggle profile modal
 
@@ -145,9 +73,43 @@ function toggleEditModal() {
     editProfile.classList.toggle('form_visible');
 }
 
+// Functions to toggle card modal
+
+function toggleCardModal() {
+    toggleModal();
+    addCard.classList.toggle('form_visible');
+};
+
+// Function to toggle Image Model
 function toggleImageModal() {
     toggleModal();
     imageModal.classList.toggle('image-modal_visible');
+}
+
+// Function for Trash Can Delete Button
+function deleteCurrentCard(e) {
+    e.target.parentNode.remove();
+}
+
+//Function for image modal
+
+function triggerImageModal(e) {
+    let activeImage = imageModal.querySelector('.image-modal__image');
+    let activeSubtitle = imageModal.querySelector('.image-modal__subtitle');
+    let image = e.currentTarget.style.backgroundImage;
+    let subtitle = e.currentTarget.parentNode.childNodes[5].childNodes[1].textContent;
+
+    //change background image to be source image compatible;
+    let imageURL = image.replace('url("', "").replace('")', "");
+
+    //assign value to source image        
+    activeImage.src = imageURL;
+    activeSubtitle.textContent = subtitle;
+
+    toggleImageModal();
+    //Add event listener to close button        
+    const imageExit = imageModal.querySelector('.image-modal__exit'); 
+    imageExit.addEventListener('click', toggleImageModal);
 }
 
 //Event Listeners for Edit modal
@@ -163,23 +125,66 @@ profileSaveButton.addEventListener("click", function() {
     toggleEditModal();
 })
 
-// Functions to toggle card modal
-
-function toggleCardModal() {
-    toggleModal();
-    addCard.classList.toggle('form_visible');
-}
 //Event listeners for Add Card modal
 addButton.addEventListener('click', toggleCardModal);
 
 closeAddCard.addEventListener('click', toggleCardModal);
 
 cardSaveButton.addEventListener('click', () => {
-    let obj = {
-        name: `${addCardTitle.value}`,
-        link: `${addCardLink.value}`
-    };
-    initialCards.push(obj);
-    renderCards();
+    addNewCard(addCardTitle.value, addCardLink.value);
     toggleCardModal();
-})
+});
+
+//Function to add a new card
+
+function addNewCard(name, link) {
+    //clone and assign values
+    const cardElement = cardTemplate.cloneNode(true);
+    cardElement.querySelector('.element__image').style.backgroundImage = `url("${link}")`;
+    cardElement.querySelector('.element__title').textContent = name;
+    //assign event listeners to like button
+    const newCardLikeButton = cardElement.querySelector('.element__like-button');
+    newCardLikeButton.addEventListener('click', (e) => {
+        e.target.classList.toggle('element__like-button_active');
+    });
+    //assign event listener to delete button
+    const newCardDeleteButton = cardElement.querySelector('.element__delete');
+    newCardDeleteButton.addEventListener('click', deleteCurrentCard);
+    //assign event listener to image
+    const newCardPicture = cardElement.querySelector('.element__image');
+    newCardPicture.addEventListener('click', triggerImageModal);
+    //add card to the page
+    cardContainer.append(cardElement);
+}
+
+//function that renders all cards at page load
+
+function renderCards() {
+    //Loop through array and generate cards
+    initialCards.forEach((item) => {
+    const cardElement = cardTemplate.cloneNode(true);
+    
+    cardElement.querySelector('.element__image').style.backgroundImage = `url("${item.link}")`;
+    cardElement.querySelector('.element__title').textContent = item.name;
+
+    cardContainer.append(cardElement);
+    })
+    //Add event listener to the like button
+    const likeButton = document.querySelectorAll('.element__like-button');
+    likeButton.forEach((item) => {
+    item.addEventListener('click', changeHeartColor);
+    })
+    //Add event listener to the delete button
+    const deleteButton = document.querySelectorAll('.element__delete');
+    deleteButton.forEach((item) => {
+        item.addEventListener('click', deleteCurrentCard);
+        });
+
+    //Add event listener to images
+    const cardPicture = document.querySelectorAll('.element__image');
+    cardPicture.forEach((item) => {
+        item.addEventListener('click', triggerImageModal);
+    })   
+};
+
+renderCards();

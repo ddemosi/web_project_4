@@ -6,6 +6,9 @@ Mostly there:
 * I still can't figure out how to use BEM modifiers without the !important declaration. I've done tons of research to figure this out, but because of the modern import rules, the modifier loads before the main declaration, which overwrites the modifier. I love BEM, but it's kind of frustrating sometimes.
 * Image modals don't look great in mobile version, since I have it set to retain it's native aspect ratio.
 
+### Draft 2
+* Made it basic. Removed all editing and rendering from the array and slimmed it down to just adding elements through the cloneNode method.
+* Organized code to make it more readable.
 
 
 Link to live site:
