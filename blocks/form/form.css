@@ -8,7 +8,7 @@
     position: fixed;
     visibility: hidden;
     opacity: 0;
-    transition: visiblity 0s, opacity 0.5s linear;
+    transition: visibility 0s .6s, opacity 0.5s linear;
     display: flex;
     flex-direction: column;
     top: 15%;
