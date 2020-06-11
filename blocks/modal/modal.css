@@ -2,11 +2,12 @@
 
 .modal {
     visibility: hidden;
+    opacity: 0;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    transition: background-color 1s, visibility 0s, linear;
+    transition: visibility 0s, opacity .5s linear;
 }

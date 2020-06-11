@@ -29,24 +29,33 @@
             
             <section class="modal">
                 
-                <div id="edit-profile" class="form">
+                <div class="form form_edit-profile">
                     <button id="close-profile-modal" class="form__exit" type="reset"></button>
                     <p class="form__title form-width">Edit profile</p>
-                    <input class="form__text-field form-width form__input-name" id="profile-name" placeholder="Name" type="text" value="Jacques Cousteau">
-                    <input class="form__text-field form-width form__input-about" id="profile-role" placeholder="About me" type="text"
+                    <input class="form__text-field form-width form__input_name" placeholder="Name" type="text" value="Jacques Cousteau">
+                    <input class="form__text-field form-width form__input_about" placeholder="About me" type="text"
                     value="Explorer">
-                    <button id="profile-save-button" class="form__save-button form-width">Save</button>
+                    <button class="form__save-button form__save-button_profile form-width">Save</button>
                 </div>
 
-                <div id="add-card" class="form">
-                    <button id="close-card-modal" class="form__exit" type="reset"></button>
-                    <p class="form__title form-width">Edit profile</p>
-                    <input class="form__text-field form-width form__input-name" id="card-name" placeholder="Title" type="text" value="">
-                    <input class="form__text-field form-width form__input-about" id="card-link" placeholder="Image URL" type="text"
+                <div class="form form_card">
+                    <button class="form__exit form__exit_card" type="reset"></button>
+                    <p class="form__title form-width">New Place</p>
+                    <input class="form__text-field form-width form__input_image-title" placeholder="Title" type="text" value="">
+                    <input class="form__text-field form-width form__input_image-link" placeholder="Image URL" type="text"
                     value="">
-                    <button id="card-save-button"class="form__save-button form-width">Save</button>
+                    <button class="form__save-button form__save-button_card form-width">Create</button>
                 </div>
 
+            </section>
+
+            <section class="image-modal">
+                <div class="image-modal__container">
+                    <button class="image-modal__exit"></button>
+                    <img class="image-modal__image" alt="A user uploaded image. No description available">
+                    <figcaption class="image-modal__subtitle"></figcaption>
+                    
+                </div>
             </section>
         </main>
 
@@ -55,11 +64,10 @@
         </footer>
     </div>
 
-    <template id="card">
+    <template class="card">
         <li class="element">
-            <div class="element__image">
-                <button class="element__delete"></button>
-                <button class="element__exit"></button>
+            <button class="element__delete"></button>
+            <div class="element__image">   
             </div>
             <div class="element__title-container">
                 <h2 class="element__title"></h2>
@@ -67,6 +75,7 @@
             </div>
         </li>
     </template>
+        
     <script src="script.js"></script>
 </body>
 </html>
