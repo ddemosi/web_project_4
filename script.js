@@ -122,9 +122,7 @@ function addNewCard(name, link) {
     cardElement.querySelector('.element__title').textContent = name;
     //assign event listeners to like button
     const newCardLikeButton = cardElement.querySelector('.element__like-button');
-    newCardLikeButton.addEventListener('click', (e) => {
-        e.target.classList.toggle('element__like-button_active');
-    });
+    newCardLikeButton.addEventListener('click', changeHeartColor);
     //assign event listener to delete button
     const newCardDeleteButton = cardElement.querySelector('.element__delete');
     newCardDeleteButton.addEventListener('click', deleteCurrentCard);
@@ -132,7 +130,11 @@ function addNewCard(name, link) {
     const newCardPicture = cardElement.querySelector('.element__image');
     newCardPicture.addEventListener('click', triggerImageModal);
     //add card to the page
-    cardContainer.append(cardElement);
+    return cardElement
+}
+
+function createCard(cardElement) {
+    cardContainer.prepend(cardElement);
 }
 
 //Event Listeners for Edit modal
@@ -154,12 +156,12 @@ addButton.addEventListener('click', toggleCardModal);
 closeAddCard.addEventListener('click', toggleCardModal);
 
 cardSaveButton.addEventListener('click', () => {
-    addNewCard(addCardTitle.value, addCardLink.value);
+    createCard(addNewCard(addCardTitle.value, addCardLink.value));
     toggleCardModal();
 });
 
 //Load cards from array at page load
 
 initialCards.forEach((item) => {
-    addNewCard(item.name, item.link);
+    cardContainer.append(addNewCard(item.name, item.link));
 })

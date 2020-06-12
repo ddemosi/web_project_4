@@ -15,6 +15,10 @@ Mostly there:
 * Cleaned up AddCard functions and condensed it into one function instead of having a separate looping function.
 * Fixed improper variable assignments.
 
+### Draft 4
+* New card now appears at beginning of the list rather than the end.
+* Fixed an instance where a callback was used instead of its dedicated function.
+
 
 Link to live site:
 https://ddemosi.github.io/web_project_4/
