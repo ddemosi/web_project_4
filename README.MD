@@ -10,6 +10,11 @@ Mostly there:
 * Made it basic. Removed all editing and rendering from the array and slimmed it down to just adding elements through the cloneNode method.
 * Organized code to make it more readable.
 
+### Draft 3
+* Fixed !important tags throughout the file.
+* Cleaned up AddCard functions and condensed it into one function instead of having a separate looping function.
+* Fixed improper variable assignments.
+
 
 Link to live site:
 https://ddemosi.github.io/web_project_4/
