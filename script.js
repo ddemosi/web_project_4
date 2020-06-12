@@ -93,14 +93,15 @@ function deleteCurrentCard(e) {
 
 //Function for image modal
 
+
 function triggerImageModal(e) {
-    let activeImage = imageModal.querySelector('.image-modal__image');
-    let activeSubtitle = imageModal.querySelector('.image-modal__subtitle');
-    let image = e.currentTarget.style.backgroundImage;
-    let subtitle = e.currentTarget.parentNode.childNodes[5].childNodes[1].textContent;
+    const activeImage = imageModal.querySelector('.image-modal__image');
+    const activeSubtitle = imageModal.querySelector('.image-modal__subtitle');
+    const image = e.target.style.backgroundImage;
+    const subtitle = e.currentTarget.parentNode.querySelector('.element__title').textContent;
 
     //change background image to be source image compatible;
-    let imageURL = image.replace('url("', "").replace('")', "");
+    const imageURL = image.replace('url("', "").replace('")', "");
 
     //assign value to source image        
     activeImage.src = imageURL;
@@ -111,29 +112,6 @@ function triggerImageModal(e) {
     const imageExit = imageModal.querySelector('.image-modal__exit'); 
     imageExit.addEventListener('click', toggleImageModal);
 }
-
-//Event Listeners for Edit modal
-editButton.addEventListener("click", toggleEditModal);
-
-closeEditProfile.addEventListener('click', toggleEditModal);
-
-profileSaveButton.addEventListener("click", function() {
-    
-    defaultName.textContent = profileName.value;
-    defaultRole.textContent = profileRole.value;
-
-    toggleEditModal();
-})
-
-//Event listeners for Add Card modal
-addButton.addEventListener('click', toggleCardModal);
-
-closeAddCard.addEventListener('click', toggleCardModal);
-
-cardSaveButton.addEventListener('click', () => {
-    addNewCard(addCardTitle.value, addCardLink.value);
-    toggleCardModal();
-});
 
 //Function to add a new card
 
@@ -157,34 +135,31 @@ function addNewCard(name, link) {
     cardContainer.append(cardElement);
 }
 
-//function that renders all cards at page load
+//Event Listeners for Edit modal
+editButton.addEventListener("click", toggleEditModal);
 
-function renderCards() {
-    //Loop through array and generate cards
-    initialCards.forEach((item) => {
-    const cardElement = cardTemplate.cloneNode(true);
+closeEditProfile.addEventListener('click', toggleEditModal);
+
+profileSaveButton.addEventListener("click", () => {
     
-    cardElement.querySelector('.element__image').style.backgroundImage = `url("${item.link}")`;
-    cardElement.querySelector('.element__title').textContent = item.name;
+    defaultName.textContent = profileName.value;
+    defaultRole.textContent = profileRole.value;
 
-    cardContainer.append(cardElement);
-    })
-    //Add event listener to the like button
-    const likeButton = document.querySelectorAll('.element__like-button');
-    likeButton.forEach((item) => {
-    item.addEventListener('click', changeHeartColor);
-    })
-    //Add event listener to the delete button
-    const deleteButton = document.querySelectorAll('.element__delete');
-    deleteButton.forEach((item) => {
-        item.addEventListener('click', deleteCurrentCard);
-        });
+    toggleEditModal();
+})
 
-    //Add event listener to images
-    const cardPicture = document.querySelectorAll('.element__image');
-    cardPicture.forEach((item) => {
-        item.addEventListener('click', triggerImageModal);
-    })   
-};
+//Event listeners for Add Card modal
+addButton.addEventListener('click', toggleCardModal);
 
-renderCards();
+closeAddCard.addEventListener('click', toggleCardModal);
+
+cardSaveButton.addEventListener('click', () => {
+    addNewCard(addCardTitle.value, addCardLink.value);
+    toggleCardModal();
+});
+
+//Load cards from array at page load
+
+initialCards.forEach((item) => {
+    addNewCard(item.name, item.link);
+})

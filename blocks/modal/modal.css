@@ -1,5 +1,3 @@
-@import url('_display/modal_display_visible.css');
-
 .modal {
     visibility: hidden;
     opacity: 0;

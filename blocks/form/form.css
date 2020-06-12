@@ -2,7 +2,6 @@
 @import url('__save-button/form__save-button.css');
 @import url('__text-field/form__text-field.css');
 @import url('__title/form__title.css');
-@import url('_visible/form_visible.css');
 
 .form {
     position: fixed;
