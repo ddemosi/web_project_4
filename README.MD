@@ -7,6 +7,10 @@ Mostly there:
 * Wasn't sure where the scripts were supposed to go, so I put them in a script folder.
 * Live coding webinar was a lifesaver this time. Validation gets really complicated, really fast, lol. The whole "object as an argument" confused me at first, but I think I understand it now.
 
+### Draft 2
+* Removed all unused variables and arguments.
+* Converted input.id strings to template literals.
+* Other QoL fixes
 
 Link to live site:
 https://ddemosi.github.io/web_project_4/
