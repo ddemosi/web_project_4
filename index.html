@@ -29,23 +29,34 @@
             
             <section class="modal">
                 
-                <div class="form form_edit-profile">
+                <form class="form form_edit-profile" novalidate>
                     <button id="close-profile-modal" class="form__exit" type="reset"></button>
                     <p class="form__title form-width">Edit profile</p>
-                    <input class="form__text-field form-width form__input_name" placeholder="Name" type="text" value="Jacques Cousteau">
-                    <input class="form__text-field form-width form__input_about" placeholder="About me" type="text"
-                    value="Explorer">
-                    <button class="form__save-button form__save-button_profile form-width">Save</button>
-                </div>
+                    <div class="form__text-field-wrapper form-width">
+                        <input id="profile-name" class="form__text-field form__input form__input_name" placeholder="Name" type="text" value="Jacques Cousteau" minlength="2" maxlength="40" required>
+                        <span id="profile-name-error" class="form__error"></span>
+                    </div>
+                    <div class="form__text-field-wrapper form-width">
+                        <input id="profile-about" class="form__text-field form__input form__input_about" placeholder="About me" type="text" value="Explorer" minlength="2" maxlength="200" required>
+                        <span id="profile-about-error" class="form__error"></span>
+                    </div>
+                    <button type="submit" class="form__save-button form__save-button_profile form-width form__save-button_disabled" disabled></button>
+                </form>
 
-                <div class="form form_card">
+                <form class="form form_card" novalidate>
                     <button class="form__exit form__exit_card" type="reset"></button>
                     <p class="form__title form-width">New Place</p>
-                    <input class="form__text-field form-width form__input_image-title" placeholder="Title" type="text" value="">
-                    <input class="form__text-field form-width form__input_image-link" placeholder="Image URL" type="text"
-                    value="">
-                    <button class="form__save-button form__save-button_card form-width">Create</button>
-                </div>
+                    <div class="form__text-field-wrapper form-width">
+                        <input id="image-title" class="form__text-field form__input form__input_image-title" placeholder="Title" type="text" value="" minlength="1" maxlength="30">
+                        <span id="image-title-error" class="form__error"></span>
+                    </div>
+                    <div class="form__text-field-wrapper form-width">
+                        <input id="image-link" class="form__text-field form__input form__input_image-link" placeholder="Image URL" type="url"
+                        value="" minlength="1">
+                        <span id="image-link-error" class="form__error"></span>
+                    </div>
+                    <button type="submit" class="form__save-button form__save-button_card form-width form__save-button_disabled" disabled></button>
+                </form>
 
             </section>
 
@@ -76,6 +87,7 @@
         </li>
     </template>
         
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/validation.js"></script>
 </body>
 </html>

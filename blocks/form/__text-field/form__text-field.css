@@ -4,10 +4,5 @@
     line-height: 17px;
     border: none;
     border-bottom: 1px solid #000; 
-    margin-bottom: 30px;
     padding: 0 0 13px;
-}
-
-.form__text-field:last-child {
-    margin-bottom: 48px;
 }

@@ -56,11 +56,48 @@ const initialCards = [
     }
 ];
 
-// Function to reset available cards
+// Function to enable like button
 
 function changeHeartColor(e) {
     e.target.classList.toggle('element__like-button_active');
 }
+
+
+// PROJECT 6 ADJUSTED FUNCTIONS
+
+
+
+
+// Function to enable and disable modal event listener
+
+function enableCardModalListeners(formSelector, visibleClass) {
+    const removeClasses = () => {
+        formSelector.classList.remove(visibleClass);
+        modal.classList.remove('modal_display_visible');
+    }
+
+
+    const clickListener = (e) => {
+        if (e.target === modal) {
+            removeClasses();
+            modal.removeEventListener('click', clickListener)
+        }
+    }
+
+    const keydownListener = (e) => {
+        if (e.key === "Escape") {
+            removeClasses();
+            document.removeEventListener('keydown', keydownListener);
+        }
+    }
+
+    //Event listener assignment
+
+    modal.addEventListener('click', clickListener);
+    document.addEventListener('keydown', keydownListener);
+}
+
+
 
 // Functions to toggle profile modal
 
@@ -71,6 +108,9 @@ function toggleModal() {
 function toggleEditModal() {
     toggleModal();
     editProfile.classList.toggle('form_visible');
+
+    //enable listeners
+    enableCardModalListeners(editProfile, 'form_visible')   
 }
 
 // Functions to toggle card modal
@@ -78,13 +118,22 @@ function toggleEditModal() {
 function toggleCardModal() {
     toggleModal();
     addCard.classList.toggle('form_visible');
+
+   enableCardModalListeners(addCard, 'form_visible');
 };
 
 // Function to toggle Image Model
 function toggleImageModal() {
     toggleModal();
     imageModal.classList.toggle('image-modal_visible');
+
+    enableCardModalListeners(imageModal, 'image-modal_visible');
 }
+
+//END OF PROJECT 6 ADJUSTMENTS
+
+
+
 
 // Function for Trash Can Delete Button
 function deleteCurrentCard(e) {
@@ -92,7 +141,6 @@ function deleteCurrentCard(e) {
 }
 
 //Function for image modal
-
 
 function triggerImageModal(e) {
     const activeImage = imageModal.querySelector('.image-modal__image');
@@ -147,6 +195,7 @@ profileSaveButton.addEventListener("click", () => {
     defaultName.textContent = profileName.value;
     defaultRole.textContent = profileRole.value;
 
+    
     toggleEditModal();
 })
 
