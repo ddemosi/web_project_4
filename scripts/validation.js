@@ -1,15 +1,15 @@
 //error messages
 
-function showErrorMessage(input, {errorClass, inputErrorClass, ...rest}) {
-    const error = document.querySelector('#' + input.id + "-error");
+function showErrorMessage(input, {errorClass, inputErrorClass}) {
+    const error = document.querySelector(`#${input.id}-error`);
     error.textContent = input.validationMessage;
 
     error.classList.add(errorClass);
     input.classList.add(inputErrorClass);
 }
 
-function hideErrorMessage(input, {errorClass, inputErrorClass, ...rest}) {
-    const error = document.querySelector('#' + input.id + "-error");
+function hideErrorMessage(input, {errorClass, inputErrorClass}) {
+    const error = document.querySelector(`#${input.id}-error`);
     error.textContent = '';
 
     error.classList.remove(errorClass);
@@ -18,8 +18,8 @@ function hideErrorMessage(input, {errorClass, inputErrorClass, ...rest}) {
 
 //disable and enable button if inputs are valid
 
-function toggleButtonState(inputs, button, {inactiveButtonClass, ...rest}) {
-    const isValid = inputs.every(input => input.validity.valid);
+function toggleButtonState(inputs, button, {inactiveButtonClass}) {
+    const isValid = inputs.every((input) => input.validity.valid);
 
     if (isValid) {
         button.classList.remove(inactiveButtonClass);
@@ -39,7 +39,7 @@ function checkInputValidity(input, form, rest) {
     }
 }
 
-function enableValidation({formSelector, inputSelector, submitButtonSelector, ...rest}) {
+function enableValidation({formSelector, inputSelector, submitButtonSelector}) {
     const forms = document.querySelectorAll(formSelector);
     //prevent all event defaults on the form
     forms.forEach((form) => {
@@ -52,8 +52,8 @@ function enableValidation({formSelector, inputSelector, submitButtonSelector, ..
 
     inputs.forEach((input) => {
         input.addEventListener('input', () => {
-            checkInputValidity(input, form, rest);
-            toggleButtonState(inputs, button, rest);
+            checkInputValidity(input, form);
+            toggleButtonState(inputs, button);
         })
         
         })
