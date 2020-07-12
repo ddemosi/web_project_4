@@ -1,5 +1,6 @@
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
+import {modal, toggleModal, enableCardModalListeners} from './utils.js';
 
 const defaultConfig = {
     inputSelector: ".form__input",
@@ -11,7 +12,6 @@ const defaultConfig = {
 
 
 // Global Selectors
-const modal = document.querySelector(".modal");
 const cardTemplateSelector = ".card";
 
 // Selectors for edit modal
@@ -35,9 +35,6 @@ const addCardLink = modal.querySelector('.form__input_image-link');
 
 // Selectors for card rendering
 const cardContainer = document.querySelector('.elements__grid-container');
-
-
-
 
 // Array of card data
 
@@ -82,43 +79,7 @@ addCardValidation.enableValidation();
 
 
 
-
-// Function to enable and disable modal event listener
-
-function enableCardModalListeners(formSelector, visibleClass) {
-    const removeClasses = () => {
-        formSelector.classList.remove(visibleClass);
-        modal.classList.remove('modal_display_visible');
-    }
-
-
-    const clickListener = (e) => {
-        if (e.target === modal) {
-            removeClasses();
-            modal.removeEventListener('click', clickListener)
-        }
-    }
-
-    const keydownListener = (e) => {
-        if (e.key === "Escape") {
-            removeClasses();
-            document.removeEventListener('keydown', keydownListener);
-        }
-    }
-
-    //Event listener assignment
-
-    modal.addEventListener('click', clickListener);
-    document.addEventListener('keydown', keydownListener);
-}
-
-
-
 // Functions to toggle profile modal
-
-function toggleModal() {
-    modal.classList.toggle('modal_display_visible');
-}
 
 function toggleEditModal() {
     toggleModal();
@@ -176,7 +137,6 @@ cardSaveButton.addEventListener('click', () => {
 });
 
 //Load cards from array at page load
-
 
 initialCards.forEach((item) => {
     createCard(item, cardContainer);
