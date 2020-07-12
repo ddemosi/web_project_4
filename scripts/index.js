@@ -1,4 +1,5 @@
-import FormValidator from 'FormValidator.js';
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
 
 const defaultConfig = {
     inputSelector: ".form__input",
@@ -8,14 +9,10 @@ const defaultConfig = {
     errorClass: "form__error_visible"
 };
 
-const editProfileValidation = new FormValidator(defaultConfig, editProfile);
-const addCardValidation = new FormValidator(defaultConfig, addCard);
-
-editProfileValidation.enableValidation();
-addCardValidation.enableValidation();
 
 // Global Selectors
 const modal = document.querySelector(".modal");
+const cardTemplateSelector = ".card";
 
 // Selectors for edit modal
 
@@ -38,10 +35,9 @@ const addCardLink = modal.querySelector('.form__input_image-link');
 
 // Selectors for card rendering
 const cardContainer = document.querySelector('.elements__grid-container');
-const cardTemplate =  document.querySelector('.card').content;
 
-// Selectors for image pop up
-const imageModal = document.querySelector('.image-modal');
+
+
 
 // Array of card data
 
@@ -72,11 +68,14 @@ const initialCards = [
     }
 ];
 
-// Function to enable like button
 
-function changeHeartColor(e) {
-    e.target.classList.toggle('element__like-button_active');
-}
+//Add form validation
+
+const editProfileValidation = new FormValidator(defaultConfig, editProfile);
+const addCardValidation = new FormValidator(defaultConfig, addCard);
+
+editProfileValidation.enableValidation();
+addCardValidation.enableValidation();
 
 
 // PROJECT 6 ADJUSTED FUNCTIONS
@@ -138,67 +137,15 @@ function toggleCardModal() {
    enableCardModalListeners(addCard, 'form_visible');
 };
 
-// Function to toggle Image Model
-function toggleImageModal() {
-    toggleModal();
-    imageModal.classList.toggle('image-modal_visible');
 
-    enableCardModalListeners(imageModal, 'image-modal_visible');
-}
 
 //END OF PROJECT 6 ADJUSTMENTS
 
 
+function createCard(data, wrap) {
+    const card = new Card(data, cardTemplateSelector);
 
-
-// Function for Trash Can Delete Button
-function deleteCurrentCard(e) {
-    e.target.parentNode.remove();
-}
-
-//Function for image modal
-
-function triggerImageModal(e) {
-    const activeImage = imageModal.querySelector('.image-modal__image');
-    const activeSubtitle = imageModal.querySelector('.image-modal__subtitle');
-    const image = e.target.style.backgroundImage;
-    const subtitle = e.currentTarget.parentNode.querySelector('.element__title').textContent;
-
-    //change background image to be source image compatible;
-    const imageURL = image.replace('url("', "").replace('")', "");
-
-    //assign value to source image        
-    activeImage.src = imageURL;
-    activeSubtitle.textContent = subtitle;
-
-    toggleImageModal();
-    //Add event listener to close button        
-    const imageExit = imageModal.querySelector('.image-modal__exit'); 
-    imageExit.addEventListener('click', toggleImageModal);
-}
-
-//Function to add a new card
-
-function addNewCard(name, link) {
-    //clone and assign values
-    const cardElement = cardTemplate.cloneNode(true);
-    cardElement.querySelector('.element__image').style.backgroundImage = `url("${link}")`;
-    cardElement.querySelector('.element__title').textContent = name;
-    //assign event listeners to like button
-    const newCardLikeButton = cardElement.querySelector('.element__like-button');
-    newCardLikeButton.addEventListener('click', changeHeartColor);
-    //assign event listener to delete button
-    const newCardDeleteButton = cardElement.querySelector('.element__delete');
-    newCardDeleteButton.addEventListener('click', deleteCurrentCard);
-    //assign event listener to image
-    const newCardPicture = cardElement.querySelector('.element__image');
-    newCardPicture.addEventListener('click', triggerImageModal);
-    //add card to the page
-    return cardElement
-}
-
-function createCard(cardElement) {
-    cardContainer.prepend(cardElement);
+    wrap.prepend(card.addNewCard())
 }
 
 //Event Listeners for Edit modal
@@ -221,12 +168,16 @@ addButton.addEventListener('click', toggleCardModal);
 closeAddCard.addEventListener('click', toggleCardModal);
 
 cardSaveButton.addEventListener('click', () => {
-    createCard(addNewCard(addCardTitle.value, addCardLink.value));
+    createCard({
+        name: addCardTitle.value,
+        link: addCardLink.value
+    }, cardContainer);
     toggleCardModal();
 });
 
 //Load cards from array at page load
 
+
 initialCards.forEach((item) => {
-    cardContainer.append(addNewCard(item.name, item.link));
+    createCard(item, cardContainer);
 })
