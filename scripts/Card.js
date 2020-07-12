@@ -33,7 +33,7 @@ class Card {
     _deleteCurrentCard(e) {
         // this._currentCard = e.target;
         console.log(this._card);
-        this._cardElement.closest('.card').remove();
+        this._card.closest('.card').remove();
     }
 
     addNewCard() {
