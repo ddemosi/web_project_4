@@ -5,6 +5,10 @@
 Mostly there:
 * In order to get the Card constructor to work, I had to import/copy a bunch of functions from the index.js. Messy, but works.
 
+### Draft 2
+* Moved variables to a utils.js file so there didn't need to be repeated code.
+* Adjusted buttons in the Card class to delete the class object rather than the template. Took some intense troubleshooting, but it works great now!
+
 Link to live site:
 https://ddemosi.github.io/web_project_4/
 

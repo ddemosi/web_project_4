@@ -9,7 +9,7 @@ class Card {
     }
 
     _getCardTemplate(){
-        const cardTemplate = document.querySelector(this._cardTemplateSelector).content.cloneNode(true);
+        const cardTemplate = document.querySelector(this._cardTemplateSelector).content.querySelector('.element').cloneNode(true);
         return cardTemplate;
     }
 
@@ -19,7 +19,7 @@ class Card {
         newCardLikeButton.addEventListener('click', this._changeHeartColor);
         //assign event listener to delete button
         const newCardDeleteButton = this._card.querySelector('.element__delete');
-        newCardDeleteButton.addEventListener('click', this._deleteCurrentCard);
+        newCardDeleteButton.addEventListener('click', () => this._deleteCurrentCard());
         //assign event listener to image
         const newCardPicture = this._card.querySelector('.element__image');
         newCardPicture.addEventListener('click', triggerImageModal);
@@ -30,10 +30,8 @@ class Card {
         e.target.classList.toggle('element__like-button_active');
     }
 
-    _deleteCurrentCard(e) {
-        // this._currentCard = e.target;
-        console.log(this._card);
-        this._card.closest('.card').remove();
+    _deleteCurrentCard() {
+        this._card.remove();
     }
 
     addNewCard() {
