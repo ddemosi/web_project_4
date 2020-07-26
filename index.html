@@ -20,7 +20,7 @@
                     <p class="profile__subtitle">Explorer</p>
                 </div>
                     
-                <button class="profile__add-button"></button>
+                <button class="form__save-button profile__add-button"></button>
             </section>
 
             <section class="elements width">
@@ -30,7 +30,7 @@
             <section class="modal">
                 
                 <form class="form form_edit-profile" novalidate>
-                    <button id="close-profile-modal" class="form__exit" type="reset"></button>
+                    <button id="close-profile-modal" class="modal__exit form__exit" type="reset"></button>
                     <p class="form__title form-width">Edit profile</p>
                     <div class="form__text-field-wrapper form-width">
                         <input id="profile-name" class="form__text-field form__input form__input_name" placeholder="Name" type="text" value="Jacques Cousteau" minlength="2" maxlength="40" required>
@@ -44,7 +44,7 @@
                 </form>
 
                 <form class="form form_card" novalidate>
-                    <button class="form__exit form__exit_card" type="reset"></button>
+                    <button class="modal__exit form__exit form__exit_card" type="reset"></button>
                     <p class="form__title form-width">New Place</p>
                     <div class="form__text-field-wrapper form-width">
                         <input id="image-title" class="form__text-field form__input form__input_image-title" placeholder="Title" type="text" value="" minlength="1" maxlength="30">
@@ -62,7 +62,7 @@
 
             <section class="image-modal">
                 <div class="image-modal__container">
-                    <button class="image-modal__exit"></button>
+                    <button class="modal__exit image-modal__exit"></button>
                     <img class="image-modal__image" alt="A user uploaded image. No description available">
                     <p class="image-modal__subtitle"></p>
                     

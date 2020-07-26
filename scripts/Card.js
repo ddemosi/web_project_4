@@ -1,9 +1,10 @@
 import {modal, imageModal, toggleModal, enableCardModalListeners, toggleImageModal, triggerImageModal} from './utils.js';
 
 class Card {
-    constructor(data, cardTemplateSelector) {
+    constructor(data, cardTemplateSelector, handleCardClick) {
         this._link = data.link;
         this._name = data.name;
+        this._handleCardClick = handleCardClick;
 
         this._cardTemplateSelector = cardTemplateSelector;
     }
@@ -22,7 +23,7 @@ class Card {
         newCardDeleteButton.addEventListener('click', () => this._deleteCurrentCard());
         //assign event listener to image
         const newCardPicture = this._card.querySelector('.element__image');
-        newCardPicture.addEventListener('click', triggerImageModal);
+        newCardPicture.addEventListener('click', this._handleCardClick);
         //add card to the page
     }
 
