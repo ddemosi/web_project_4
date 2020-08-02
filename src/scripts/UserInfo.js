@@ -5,13 +5,11 @@ export default class UserInfo {
     }
 
     getUserInfo(){
-        document.querySelector(".form__input_name").value = this._name.textContent;
-        document.querySelector(".form__input_about").value = this._about.textContent;
+        return {name: this._name.textContent, about: this._about.textContent};
     }
-    setUserInfo(){
-       
-        document.querySelector(".profile__name").textContent = this._name.value;
-        document.querySelector(".profile__subtitle").textContent = this._about.value;
-       
+
+    setUserInfo(data){
+        this._name.textContent = data.name;
+        this._about.textContent = data.about;
     }
 }

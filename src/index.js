@@ -3,18 +3,20 @@ import Card from './scripts/Card.js';
 import PopupWithForm from './scripts/PopupWithForm.js';
 import PopupWithImage from './scripts/PopupWithImage.js';
 import Section from './scripts/Section.js';
-import {nameInput, linkInput, editProfile, editButton, addCard, addButton, initialCards} from './scripts/utils.js';
+import {nameInput, linkInput, editNameInput, editAboutInput, editProfile, editButton, addCard, addButton, initialCards, defaultConfig} from './scripts/utils.js';
 import UserInfo from './scripts/UserInfo.js';
 import "./pages/index.css";
 
-const defaultConfig = {
-    inputSelector: ".form__input",
-    submitButtonSelector: ".form__save-button",
-    inactiveButtonClass: "form__save-button_disabled",
-    inputErrorClass: "form__input-error",
-    errorClass: "form__error_visible"
-};
+// function to enable image popup
 
+function triggerImageModal(e){
+    const image = e.target.style.backgroundImage;
+    const subtitle = e.currentTarget.parentNode.querySelector('.element__title').textContent;
+    //change background image to be source image compatible;
+    const imageURL = image.replace('url("', "").replace('")', "");
+
+    imagePopup.open(imageURL, subtitle);
+}
 
 //Add form validation
 
@@ -27,14 +29,14 @@ addCardValidation.enableValidation();
 // Functions to toggle profile modal
 
 // Class initializiations
-const imagePopup = new PopupWithImage('.image-modal');          
+const imagePopup = new PopupWithImage('.image-modal');
+
+const userInfo = new UserInfo({
+    nameSelector: '.profile__name',
+    aboutSelector: '.profile__subtitle'});
 
 const openEditPopup = new PopupWithForm('.form_edit-profile', () => {
-    const userInfo = new UserInfo({
-        nameSelector: '.form__input_name',
-        aboutSelector: '.form__input_about'});
-
-    userInfo.setUserInfo();
+        userInfo.setUserInfo({name: editNameInput.value, about: editAboutInput.value});
     });
 
 const openCardPopup = new PopupWithForm('.form_card', () => {
@@ -46,37 +48,22 @@ const openCardPopup = new PopupWithForm('.form_card', () => {
     initalCardList.addItem(cardElement);
 })
 
-// Functions to toggle card modal
 
-function toggleCardModal() {
-    //Open the popup
-    openCardPopup.open();
-    //Set exit event listeners
-    openCardPopup.setEventListeners(); 
-}
-
-// function to enable image popup
-
-function triggerImageModal(e){
-    const image = e.target.style.backgroundImage;
-    const subtitle = e.currentTarget.parentNode.querySelector('.element__title').textContent;
-    //change background image to be source image compatible;
-    const imageURL = image.replace('url("', "").replace('")', "");
-
-    imagePopup.open(imageURL, subtitle);
-    imagePopup.setEventListeners();
-}
 
 //Event Listeners for Edit modal
 editButton.addEventListener("click", ()=> {  
-    //Open the popup
+    //Add current form values
+    const currentUserInfo = userInfo.getUserInfo();
+    editNameInput.value = currentUserInfo.name;
+    editAboutInput.value = currentUserInfo.about;
+    //open popup
     openEditPopup.open();
-    //Set exit event listeners
-    openEditPopup.setEventListeners(); 
 });
 
 //Event listeners for Add Card modal
-addButton.addEventListener('click', toggleCardModal);
+addButton.addEventListener('click', () => {
+    openCardPopup.open();
+});
 
 //Render Cards on page load
 
@@ -91,3 +78,6 @@ const initalCardList = new Section({
     }}, '.elements__grid-container');
 
 initalCardList.renderItems();
+imagePopup.setEventListeners();
+openCardPopup.setEventListeners();
+openEditPopup.setEventListeners();

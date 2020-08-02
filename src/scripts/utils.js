@@ -13,6 +13,8 @@ const addButton = document.querySelector('.profile__add-button');
 //Selectors for edit modal
 const editProfile = modal.querySelector('.form_edit-profile');
 const editButton = document.querySelector('.profile__edit-button');
+const editNameInput = document.querySelector('.form__input_name');
+const editAboutInput = document.querySelector('.form__input_about');
 
 function toggleModal() {
     modal.classList.toggle('modal_display_visible');
@@ -47,4 +49,14 @@ const initialCards = [
     }
 ];
 
-export {modal, imageModal, nameInput, linkInput, editProfile, editButton, addButton, addCard, initialCards, toggleModal};
+//default validation config
+
+const defaultConfig = {
+    inputSelector: ".form__input",
+    submitButtonSelector: ".form__save-button",
+    inactiveButtonClass: "form__save-button_disabled",
+    inputErrorClass: "form__input-error",
+    errorClass: "form__error_visible"
+};
+
+export {modal, imageModal, nameInput, linkInput, editNameInput, editAboutInput, editProfile, editButton, addButton, addCard, initialCards, defaultConfig, toggleModal};
