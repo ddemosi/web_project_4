@@ -5,7 +5,7 @@
     height: 40px;
     top: -30px;
     right: -30px;
-    background-image: url('../../../images/Close\ Icon.svg');
+    background-image: url('../../../images/Close-Icon.svg');
     background-size: contain;
     z-index: -3;
     border: none;
@@ -16,10 +16,3 @@
 .form__exit:hover {
     opacity: 0.6;
 }
-
-/* @media screen and (max-width: 500px) {
-    .form__exit {
-        top: -35px;
-        right: 0;
-    }
-} */

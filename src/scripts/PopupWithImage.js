@@ -11,4 +11,10 @@ export default class PopupWithImage extends Popup {
         
         super.open();
     }
+
+    setEventListeners(){
+        this._popupElement.querySelector('.modal__exit').addEventListener('click', () => {
+            this.close();
+        });
+    }
 }

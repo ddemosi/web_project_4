@@ -1,4 +1,4 @@
-import {modal, imageModal, toggleModal, enableCardModalListeners, toggleImageModal, triggerImageModal} from './utils.js';
+// import {modal, imageModal, toggleModal, enableCardModalListeners, toggleImageModal, triggerImageModal} from './utils.js';
 
 class Card {
     constructor(data, cardTemplateSelector, handleCardClick) {
