@@ -1,10 +1,15 @@
-// import {modal, imageModal, toggleModal, enableCardModalListeners, toggleImageModal, triggerImageModal} from './utils.js';
+import {myId} from '../scripts/utils.js';
 
 class Card {
-    constructor(data, cardTemplateSelector, handleCardClick) {
+    constructor(data, events, cardTemplateSelector) {
         this._link = data.link;
         this._name = data.name;
-        this._handleCardClick = handleCardClick;
+        this._likes = data.likes;
+        this._id = data._id;
+        this._ownerId = data.owner._id;
+        this._handleCardClick = events.handleCardClick;
+        this._handleDeleteClick = events.handleDeleteClick;
+        this._handleLikeClick = events.handleLikeClick;
 
         this._cardTemplateSelector = cardTemplateSelector;
     }
@@ -17,21 +22,26 @@ class Card {
     _addEventListeners() {
         //assign event listeners to like button
         const newCardLikeButton = this._card.querySelector('.element__like-button');
-        newCardLikeButton.addEventListener('click', this._changeHeartColor);
+        newCardLikeButton.addEventListener('click', () => {
+            this._handleLikeClick(this._id)});
         //assign event listener to delete button
         const newCardDeleteButton = this._card.querySelector('.element__delete');
-        newCardDeleteButton.addEventListener('click', () => this._deleteCurrentCard());
+        if (this._ownerId !== myId) {
+            newCardDeleteButton.style.display = 'none';
+         }
+        newCardDeleteButton.addEventListener('click', () => {this._deleteCurrentCard(this._id)
+                
+           
+        });
         //assign event listener to image
         const newCardPicture = this._card.querySelector('.element__image');
-        newCardPicture.addEventListener('click', this._handleCardClick);
+        newCardPicture.addEventListener('click', () => {
+            this._handleCardClick()});
         //add card to the page
     }
 
-    _changeHeartColor(e) {
-        e.target.classList.toggle('element__like-button_active');
-    }
-
-    _deleteCurrentCard() {
+    _deleteCurrentCard(id) {
+        this._handleDeleteClick(id);
         this._card.remove();
     }
 
@@ -43,10 +53,16 @@ class Card {
 
         cardElement.querySelector('.element__image').style.backgroundImage = `url("${this._link}")`;
         cardElement.querySelector('.element__title').textContent = this._name;
+        cardElement.querySelector('.element__like-counter').textContent = this._likes.length;
+        cardElement.querySelector('.element__id').value = this._id;
         
         this._addEventListeners();
     
         return cardElement
+    }
+
+    refreshLikes(likes) {
+        this._card.querySelector('.element__like-counter').textContent = likes;
     }
 }
 

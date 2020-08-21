@@ -1,9 +1,9 @@
 import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup {
-    constructor(popupSelector, formSubmit){
+    constructor(popupSelector, handlers){
         super(popupSelector);
-        this._formSubmit = formSubmit;
+        this._formSubmit = handlers.formSubmit;
     }
 
     _getInputValues(){
@@ -18,13 +18,29 @@ export default class PopupWithForm extends Popup {
     setEventListeners(){ 
         this._popupElement.querySelector('.form__save-button').addEventListener('click', (e) => {
             e.preventDefault();
-            this._formSubmit();
-            this.close();
+            this._formSubmit(this._getInputValues());
         })
         super.setEventListeners();
         
     }
 
+    setDeletePopupListener(){
+        this._popupElement.querySelector('.form__save-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            this._formSubmit(this._getDeleteId())
+        })
+        super.setEventListeners();
+    }
+
+    _getDeleteId() {
+        return this._popupElement.querySelector('.form__card-id').value;
+    }
+
+    openWithId(id) {
+        this._popupElement.querySelector('.form__card-id').value = id;
+        super.open();
+    }
+   
     close(){
         this._popupElement.reset();
         super.close();

@@ -1,5 +1,3 @@
-import Card from './Card.js';
-
 export default class Section {
     constructor({data, renderer}, containerSelector){
         this._container = document.querySelector(containerSelector);
@@ -14,6 +12,6 @@ export default class Section {
     }
 
     addItem(element){
-        this._container.append(element);
+        this._container.prepend(element);
     }
 }

@@ -1,7 +1,9 @@
 .form__save-button_disabled {
-    background-image: url('../../../../images/submit-button-disabled.svg');
+    background-image: url('../../../../images/button-background-disabled.png');
+    color: black;
+    opacity: .6;
 }
 
-.form__save-button:hover {
-    opacity: 1;
+.form__save-button_disabled:hover {
+    opacity: .6;
 }

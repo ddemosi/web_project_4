@@ -4,9 +4,13 @@
     height: 50px;
     background-size: cover;
     background-position: center;
-    background-image: url('../../../images/submit-button.svg');
+    background-image: url('../../../images/button-background.png');
     border: none;
     outline: none;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: white;
 }
 
 .form__save-button:hover {

@@ -16,38 +16,23 @@ const editButton = document.querySelector('.profile__edit-button');
 const editNameInput = document.querySelector('.form__input_name');
 const editAboutInput = document.querySelector('.form__input_about');
 
-function toggleModal() {
-    modal.classList.toggle('modal_display_visible');
+//Selectors for Avatar modal
+const avatarUpdateForm = modal.querySelector('.form_update-avatar');
+const editAvatar = document.querySelector('.profile__avatar-container');
+const avatarElement = document.querySelector('.profile__avatar');
+
+//Selectors for delete modal
+const removeCardID = document.querySelector('.form__card-id');
+//api data
+const apiEndpoints = {
+    url: "https://around.nomoreparties.co/v1/group-3",
+    headers: `{
+        auth: "98dd8ac9-99ea-4ab0-85f9-6d61f9934e14",
+        "Content-Type": "application/json"
+    }`
 }
 
-// Array of card data
-
-const initialCards = [
-    {
-        name: "Yosemite Valley",
-        link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-    },
-    {
-        name: "Lake Louise",
-        link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-    },
-    {
-        name: "Bald Mountains",
-        link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-    },
-    {
-        name: "Latemar",
-        link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-    },
-    {
-        name: "Vanois National Park",
-        link: "https://code.s3.yandex.net/web-code/vanois.jpg"
-    },
-    {
-        name: "Lago di Braies",
-        link: "https://code.s3.yandex.net/web-code/lago.jpg"
-    }
-];
+const myId = "747ab9509999074a8ccb0d68"
 
 //default validation config
 
@@ -59,4 +44,17 @@ const defaultConfig = {
     errorClass: "form__error_visible"
 };
 
-export {modal, imageModal, nameInput, linkInput, editNameInput, editAboutInput, editProfile, editButton, addButton, addCard, initialCards, defaultConfig, toggleModal};
+function toggleModal() {
+    modal.classList.toggle('modal_display_visible');
+}
+
+function loadingIcon(isLoading, modal) {
+    if (isLoading) {
+     modal.querySelector('.form__save-button').textContent = "Saving...";
+    } else {
+     modal.querySelector('.form__save-button').textContent = "Saved!";
+    }
+   }
+
+export {modal, imageModal, nameInput, linkInput, editNameInput, editAboutInput, editProfile, editButton, addButton, addCard, defaultConfig, avatarUpdateForm,
+     editAvatar, avatarElement, apiEndpoints, removeCardID, toggleModal, loadingIcon, myId};
